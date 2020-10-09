@@ -10,9 +10,8 @@ import {
   Menu,
   Refresh,
 } from '@material-ui/icons'
-import { withStore } from 'freenit'
-import { Strophe } from 'strophe.js'
-import { errors } from 'utils'
+import { withStore, errors } from 'freenit'
+import * as XMPP from 'stanza'
 import Template from 'templates/default/detail'
 import {
   MailCompose,
@@ -25,12 +24,29 @@ import {
 class Mail extends React.Component {
   state = {
     compose: false,
-    ws: new Strophe.Connection('wss://jabber.tilda.center:5443/ws'),
+    ws: XMPP.createClient({
+      jid: 'jid',
+      password: 'password',
+      transports: {
+        websocket: 'wss://jabber.tilda.center:5443/ws',
+      },
+      sasl: false,
+    }),
   }
 
   constructor(props) {
     super(props)
     this.init()
+  }
+
+  onMessage = (message) => {
+    console.log('callback', message)
+    return true
+  }
+
+  onPresence = (presence) => {
+    console.log('presence', presence)
+    return true
   }
 
   init = async () => {
@@ -40,7 +56,16 @@ class Mail extends React.Component {
       const error = errors(response)
       notification.show(`Error fetching INBOX messages: ${error.message}`)
     }
-    this.state.ws.connect('email', 'pass')
+    this.state.ws.on('session:started', () => {
+      this.state.ws.getRoster()
+      this.state.ws.sendPresence()
+      this.state.ws.discoverICEServers()
+    })
+    this.state.ws.on('chat', (msg) => {
+      console.log(msg)
+    })
+    console.log('connecting')
+    this.state.ws.connect()
   }
 
   openCompose = () => {
