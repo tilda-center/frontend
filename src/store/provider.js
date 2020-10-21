@@ -17,6 +17,8 @@ import { withRouter } from 'react-router-dom'
 // Templates
 import { EmptyTemplate } from 'freenit'
 
+import Blog from 'pages/blog'
+
 
 export const data = {}
 
@@ -44,6 +46,10 @@ const StoreProvider = (props) => {
     user: new User.store(
       useState(User.initial.detail),
       useState(User.initial.list),
+    ),
+    blog: new Blog.store(
+      useState(Blog.initial.detail),
+      useState(Blog.initial.list),
     ),
   }
   data.store = store
