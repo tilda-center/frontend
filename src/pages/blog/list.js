@@ -1,9 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {
-  errors,
-  withStore,
-} from 'freenit'
+import React from "react";
+import PropTypes from "prop-types";
+import { errors, withStore } from "freenit";
 
 // Components
 import {
@@ -19,48 +16,48 @@ import {
   CardMedia,
   FormControlLabel,
   Card,
-} from '@material-ui/core'
+} from "@material-ui/core";
 
 // Icons
-import AddIcon from '@material-ui/icons/Add'
+import AddIcon from "@material-ui/icons/Add";
 
-import Template from 'templates/default/detail'
-import styles from './style'
-
+import Template from "templates/default/detail";
+import styles from "./styles";
 
 class BlogList extends React.Component {
   state = {
     createOpen: false,
+    editOpen: false,
     list: [],
     selectedFile: null,
     year: new Date().getFullYear(),
-  }
+  };
 
-  componentDidMount(){
-      this.fetch()
+  componentDidMount() {
+    this.fetch();
   }
 
   fetch = async () => {
-    const { blog, notification } = this.props.store
-    const response = await blog.fetch()
+    const { blog, notification } = this.props.store;
+    const response = await blog.fetch();
     if (!response.ok) {
-      const error = errors(response)
-      notification.show(error.message)
+      const error = errors(response);
+      notification.show(error.message);
     } else {
-      for (var i = 0; i< response.data.length; i++){
-        response.data[i].date = new Date(response.data[i].date)
+      for (var i = 0; i < response.data.length; i++) {
+        response.data[i].date = new Date(response.data[i].date);
       }
-      this.setState({ list: response.data })
+      this.setState({ list: response.data });
     }
-  }
+  };
 
-  onFileChange = event => {
+  onFileChange = (event) => {
     this.setState({ selectedFile: event.target.files[0] });
   };
 
   onFileUpload = async () => {
     const formData = new FormData();
-    const { blog, notification } = this.props.store
+    const { blog, notification } = this.props.store;
 
     formData.append(
       "file",
@@ -68,29 +65,30 @@ class BlogList extends React.Component {
       this.state.selectedFile.name
     );
 
-    const response = await blog.upload(formData)
+    const response = await blog.upload(formData);
     if (!response.ok) {
-      const error = errors(response)
-      notification.show(error.message)
+      const error = errors(response);
+      notification.show(error.message);
     } else {
-      this.setState({ link: response.link })
+      this.setState({ link: response.link });
     }
-  }
+  };
 
   handleOpenCreate = () => {
-    this.setState({ createOpen: true })
-  }
+    this.setState({ createOpen: true });
+  };
 
-  handleCloseCreate = (response) => {
+  handleCloseCreateCancel = () => {
+    this.setState({ createOpen: false });
+  };
 
-    this.setState({ createOpen: false,
-                    list: response.data,
-                  })
-  }
+  handleCloseCreateSuccess = (response) => {
+    this.setState({ createOpen: false, list: response.data });
+  };
 
   handleEventCreate = async () => {
     const formData = new FormData();
-    const { blog, notification } = this.props.store
+    const { blog, notification } = this.props.store;
 
     formData.append(
       "file",
@@ -98,90 +96,101 @@ class BlogList extends React.Component {
       this.state.selectedFile.name
     );
 
-    const response = await blog.upload(formData)
+    const response = await blog.upload(formData);
     if (!response.ok) {
-      const error = errors(response)
-      notification.show(error.message)
+      const error = errors(response);
+      notification.show(error.message);
     } else {
-      const list_response = await this.props.store.blog.post(
-        {
-          "content": this.state.content,
-          "published": this.state.published,
-          "title": this.state.title,
-          "slug": this.state.slug,
-          "image": response.link,
-      })
+      const list_response = await this.props.store.blog.post({
+        content: this.state.content,
+        title: this.state.title,
+        image: response.link,
+      });
       if (!list_response.ok) {
-        const error = errors(list_response)
-        notification.show(error.message)
+        const error = errors(list_response);
+        notification.show(error.message);
       } else {
-        for (var i = 0; i< list_response.data.length; i++){
-          list_response.data[i].date = new Date(list_response.data[i].date)
+        for (var i = 0; i < list_response.data.length; i++) {
+          list_response.data[i].date = new Date(list_response.data[i].date);
         }
-        this.handleCloseCreate(list_response)
+        this.handleCloseCreateSuccess(list_response);
       }
     }
-  }
+  };
   handleContent = (content) => {
-    this.setState({ content: content.target.value })
-  }
+    this.setState({ content: content.target.value });
+  };
   handleSlug = (slug) => {
-    this.setState({ slug: slug.target.value })
-  }
+    this.setState({ slug: slug.target.value });
+  };
   handleTitle = (title) => {
-    this.setState({ title: title.target.value })
-  }
+    this.setState({ title: title.target.value });
+  };
   handlePub = (published) => {
-    this.setState({ published: published.target.checked })
-  }
+    this.setState({ published: published.target.checked });
+  };
 
   handleEvent = (year, month, day, slug) => async () => {
-    const { blog, history, notification } = this.props.store
-    const response = await blog.get(year, month, day, slug)
+    const { blog, history, notification } = this.props.store;
+    const response = await blog.get(year, month, day, slug);
     if (!response.ok) {
-      const error = errors(response)
-      notification.show(error.message)
+      const error = errors(response);
+      notification.show(error.message);
     } else {
-      history.push(`blogs/${year}/${month}/${day}/${slug}`)
+      history.push(`blogs/${year}/${month}/${day}/${slug}`);
     }
-  }
+  };
   createMarkup(blog) {
-    return {__html: blog}
+    return { __html: blog };
   }
   render() {
-    const blogsView = this.state.list.map(blog => (
-        <Card style={styles.card}>
-          <h2 key={blog.id} style={styles.title}>
-            <span
-              onClick={this.handleEvent(blog.date.getFullYear(),
-                                        blog.date.getMonth()+1,
-                                        blog.date.getUTCDate(),
-                                        blog.slug
-                                      )}
-            >
-              {blog.slug}
-                    </span>
-          </h2>
-          <img style={styles.card_img} src={blog.image}/>
+    const blogsView = this.state.list.map((blog) => (
+      <Paper
+        style={styles.card_container}
+        onClick={this.handleEvent(
+          blog.date.getFullYear(),
+          blog.date.getMonth() + 1,
+          blog.date.getUTCDate(),
+          blog.slug
+        )}
+      >
+        <div
+          style={{
+            height: 120,
+            width: 120,
+            backgroundImage: `url(${blog.image})`,
+            backgroundSize: "100% 100%",
+            marginRight: 20,
+          }}
+        />
 
-        </Card>
-
-      ))
+        <div>
+          <h2>{blog.title}</h2>
+          <p>{blog.content.slice(0,35) + "..."}</p>
+        </div>
+      </Paper>
+    ));
 
     return (
-      <Template style={{}}>
-        <Paper style={styles.card_container}>
+      <Template>
+        <div
+          style={styles.grid}
+        >
           {blogsView}
-        </Paper>
-
-        {this.props.store.auth.detail.ok?
-          <Fab style={styles.button}color="primary" onClick={this.handleOpenCreate} data-id="add">
-          <AddIcon />
+        </div>
+        {this.props.store.auth.detail.ok ? (
+          <Fab
+            style={styles.button}
+            color="primary"
+            onClick={this.handleOpenCreate}
+            data-id="add"
+          >
+            <AddIcon />
           </Fab>
-          : null}
+        ) : null}
 
-          <Dialog open={this.state.createOpen}>
-          <DialogTitle>Add new Blog</DialogTitle>
+        <Dialog maxWidth='xl' fullWidth='true'open={this.state.createOpen}>
+          <DialogTitle style={styles.editable_title} >Add new blog</DialogTitle>
           <DialogContent>
             <TextField
               label="content"
@@ -190,40 +199,24 @@ class BlogList extends React.Component {
             />
 
             <TextField
-              label="slug"
-              onChange={this.handleSlug}
-              value={this.state.slug}
-            />
-            <TextField
               label="title"
+              style={styles.editable_title}
               onChange={this.handleTitle}
               value={this.state.title}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  label="published"
-                  onChange={this.handlePub}
-                  checked={this.state.published}
-                />
-              }
-              label="published"
-            />
 
             <div>
-                <input type="file" onChange={this.onFileChange} />
-                <button onClick={this.onFileUpload}>
-                  Upload!
-                </button>
+              <input type="file" onChange={this.onFileChange} />
             </div>
 
             <Paper style={{}}>
-            <div dangerouslySetInnerHTML={this.createMarkup(this.state.content)} />
+              <div
+                dangerouslySetInnerHTML={this.createMarkup(this.state.content)}
+              />
             </Paper>
-
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleCloseCreate} color="primary">
+            <Button onClick={this.handleCloseCreateCancel} color="primary">
               Cancel
             </Button>
             <Button onClick={this.handleEventCreate} color="primary">
@@ -232,9 +225,8 @@ class BlogList extends React.Component {
           </DialogActions>
         </Dialog>
       </Template>
-    )
+    );
   }
 }
 
-
-export default withStore(BlogList)
+export default withStore(BlogList);

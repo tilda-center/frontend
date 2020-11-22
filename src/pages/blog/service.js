@@ -1,6 +1,13 @@
 export default {
-  fetchAll: async () => {
-    const response = await window.rest.get(`/blogs`)
+  fetchAll: async (page = 0, perpage = 100) => {
+    const headers = {
+      'Page': page,
+      'PerPage': 100,
+    }
+    const response = await window.rest.get(`/blogs`,{
+      headers: headers,
+      },
+    )
     return response.data
   },
 
@@ -12,6 +19,7 @@ export default {
   },
 
   patch: async (year, month, day, slug, data) => {
+
     const response = await window.rest.patch(
       `/blogs/${year}/${month}/${day}/${slug}`,
       data,
@@ -19,10 +27,16 @@ export default {
     return response.data
   },
 
-  post: async (data) => {
+  post: async (data, page = 0, perpage = 100) => {
+    const headers = {
+      'Page': page,
+      'PerPage': 100,
+    }
     const response = await window.rest.post(
       `/blogs`,
-      data,
+      data, {
+        headers: headers,
+      },
     )
     return response.data
   },
@@ -32,6 +46,7 @@ export default {
       `/blogs/${year}/${month}/${day}/${slug}`)
     return response.data
   },
+
   upload: async (formdata) => {
     const response = await window.rest.post(
       `/blogs/images`,

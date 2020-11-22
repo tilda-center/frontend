@@ -46,9 +46,9 @@ export default class BlogStore {
       return result
     }
   }
-  patch = async (data) => {
+  patch = async (year, month, day, slug, data) => {
     try {
-      const response = await service.fetchAll()
+      const response = await service.patch(year, month, day, slug, data)
       const result = {
         ...response,
         ok: true,
