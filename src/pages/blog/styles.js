@@ -9,6 +9,13 @@ export default {
     bottom: 20,
   },
 
+  image: {
+    height: 120,
+    width: 120,
+    backgroundSize: "100% 100%",
+    marginRight: 20,
+  },
+
   grid: {
     padding: 20,
     display: "grid",

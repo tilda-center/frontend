@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { errors, withStore } from "freenit";
 
 // Components
@@ -12,10 +11,6 @@ import {
   Fab,
   Paper,
   TextField,
-  Checkbox,
-  CardMedia,
-  FormControlLabel,
-  Card,
 } from "@material-ui/core";
 
 // Icons
@@ -156,11 +151,8 @@ class BlogList extends React.Component {
       >
         <div
           style={{
-            height: 120,
-            width: 120,
+            ...styles.image,
             backgroundImage: `url(${blog.image})`,
-            backgroundSize: "100% 100%",
-            marginRight: 20,
           }}
         />
 

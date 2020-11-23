@@ -1,11 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { errors, withStore } from "freenit";
 
 // Components
-import { Paper, TextField, Switch, Button } from "@material-ui/core";
-
-import { Talk } from "components";
+import { TextField, Switch, Button } from "@material-ui/core";
 
 // Contenteditable
 import ContentEditable from "react-contenteditable";
@@ -98,13 +95,13 @@ class BlogDetail extends React.Component {
   }
 
   render() {
-    const { blog, fetched } = this.state;
+    const { fetched } = this.state;
 
     if (!fetched) {
       return null;
     }
 
-    const { year, month, day, slug } = this.props.match.params;
+    const { year, month, day } = this.props.match.params;
     const { author } = this.state;
 
     return (
