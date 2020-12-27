@@ -24,6 +24,7 @@ import MailIcon from '@material-ui/icons/Email'
 import MenuIcon from '@material-ui/icons/Menu'
 import RoleIcon from '@material-ui/icons/People'
 import UserIcon from '@material-ui/icons/PeopleOutline'
+import BookIcon from '@material-ui/icons/Book'
 
 import styles from './styles'
 
@@ -105,7 +106,18 @@ class Template extends React.Component {
           </ListItemIcon>
           Logout
         </MenuItem>
-      ) : (
+      ) : [
+        (
+          <Link to="/blogs" key="blogs">
+            <MenuItem>
+              <ListItemIcon>
+                <BookIcon />
+              </ListItemIcon>
+              Blogs
+            </MenuItem>
+          </Link>
+        ),
+        (
         <Link to="/login">
           <MenuItem>
             <ListItemIcon>
@@ -114,7 +126,9 @@ class Template extends React.Component {
             Login
           </MenuItem>
         </Link>
-      )
+      ),
+    ]
+
     const AuthMenu = auth.detail.ok
       ? [
         (
@@ -134,6 +148,16 @@ class Template extends React.Component {
                 <MailIcon />
               </ListItemIcon>
               Mail
+            </MenuItem>
+          </Link>
+        ),
+        (
+          <Link to="/blogs" key="blogs">
+            <MenuItem>
+              <ListItemIcon>
+                <BookIcon />
+              </ListItemIcon>
+              Blogs
             </MenuItem>
           </Link>
         ),
@@ -202,4 +226,3 @@ Template.propTypes = {
 
 
 export default withRouter(withStore(Template))
-

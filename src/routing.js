@@ -11,6 +11,7 @@ import {
   Dashboard,
   Landing,
   Mail,
+  Blog,
 } from 'pages'
 
 
@@ -26,6 +27,8 @@ const Routing = () => {
       <Route exact path="/confirm/:token" component={Auth.confirm} />
       <Route exact path="/dashboard" component={Dashboard.detail} />
       <Route exact path="/login" component={Auth.login} />
+      <Route exact path="/blogs" component={Blog.list} />
+      <Route exact path="/blogs/:year/:month/:day/:slug" component={Blog.detail} />
       <Route exact path="/mail" component={Mail.detail} />
       <Route exact path="/profile" component={Profile.detail} />
       <Route exact path="/register" component={Auth.register} />

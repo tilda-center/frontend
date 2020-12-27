@@ -4,9 +4,11 @@
   "private": false,
   "dependencies": {
     "freenit": "^0.0.15",
+    "moment": "^2.29.1",
     "prop-types": "^15.7.2",
     "radium": "^0.26.0",
     "react": "^16.13.1",
+    "react-contenteditable": "^3.3.5",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.3",
     "react-swipeable-views": "^0.13.9",
