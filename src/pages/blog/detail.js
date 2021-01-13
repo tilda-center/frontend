@@ -1,38 +1,43 @@
-import React from "react";
-import { errors, withStore } from "freenit";
+import React from 'react'
+import moment from 'moment'
+import {
+  TextField,
+  Switch,
+  Button,
+} from '@material-ui/core'
+import {
+  errors,
+  withStore,
+} from 'freenit'
+import ContentEditable from 'react-contenteditable'
 
-// Components
-import { TextField, Switch, Button } from "@material-ui/core";
-
-// Contenteditable
-import ContentEditable from "react-contenteditable";
-
-import Template from "templates/default/detail";
-import moment from "moment";
+import Template from 'templates/default/detail'
 import styles from './styles'
 
+
 class BlogDetail extends React.Component {
+  state = {
+    blog: {},
+    fetched: false,
+  }
+
   constructor(props) {
-    super(props);
-    this.contentEditable = React.createRef();
-    this.state = { blog: {}, fetched: false };
-    this.fetch();
+    super(props)
+    this.contentEditable = React.createRef()
+    this.fetch()
   }
 
   fetch = async () => {
-    const { blog, history, notification } = this.props.store;
-
-    const { year, month, day, slug } = this.props.match.params;
-
-    var d = moment(`${year}/${month}/${day}`);
-
+    const { blog, history, notification } = this.props.store
+    const { year, month, day, slug } = this.props.match.params
+    const d = moment(`${year}/${month}/${day}`)
     if (d.isValid()) {
-      const response = await blog.get(year, month, day, slug);
+      const response = await blog.get(year, month, day, slug)
       if (!response.ok) {
-        const error = errors(response);
-        notification.show(error.message);
-        history.push(`/blogs`);
-        return;
+        const error = errors(response)
+        notification.show(error.message)
+        history.push(`/blogs`)
+        return
       }
       this.setState({
         blog: response,
@@ -41,69 +46,61 @@ class BlogDetail extends React.Component {
         title: response.title,
         published: response.published,
         fetched: true,
-      });
+      })
     }
-  };
+  }
 
   handleEventDelete = async () => {
-    const { blog, history, notification } = this.props.store;
-    const { year, month, day, slug } = this.props.match.params;
-
-    const response = await blog.delete(year, month, day, slug);
-
+    const { blog, history, notification } = this.props.store
+    const { year, month, day, slug } = this.props.match.params
+    const response = await blog.delete(year, month, day, slug)
     if (!response.ok) {
-      const error = errors(response);
-      notification.show(error.message);
-      return;
+      const error = errors(response)
+      notification.show(error.message)
+      return
     } else {
-      history.push(`/blogs`);
-      return;
+      history.push(`/blogs`)
+      return
     }
-  };
+  }
 
   handleEventSave = async () => {
-    const { blog, notification } = this.props.store;
-    const { year, month, day, slug } = this.props.match.params;
+    const { blog, notification } = this.props.store
+    const { year, month, day, slug } = this.props.match.params
     const data = {
       content: this.state.content,
       title: this.state.title,
       published: this.state.published,
-    };
-    const response = await blog.patch(year, month, day, slug, data);
-
-    if (!response.ok) {
-      const error = errors(response);
-      notification.show(error.message);
-      return;
     }
-  };
+    const response = await blog.patch(year, month, day, slug, data)
+    if (!response.ok) {
+      const error = errors(response)
+      notification.show(error.message)
+      return
+    }
+  }
 
   handlePublished = (published) => {
-    this.setState({ published: published.target.checked });
-  };
+    this.setState({ published: published.target.checked })
+  }
 
   handleTitle = (title) => {
-    this.setState({ title: title.target.value });
-  };
+    this.setState({ title: title.target.value })
+  }
 
   handleContent = (content) => {
-    this.setState({ content: content.target.value });
-  };
+    this.setState({ content: content.target.value })
+  }
 
   createMarkup(blog) {
-    return { __html: blog };
+    return { __html: blog }
   }
 
   render() {
-    const { fetched } = this.state;
-
-    if (!fetched) {
-      return null;
-    }
-
-    const { year, month, day } = this.props.match.params;
-    const { author } = this.state;
-
+    const { fetched } = this.state
+    if (!fetched) { return null }
+    const { year, month, day } = this.props.match.params
+    const { author } = this.state
     return (
       <Template>
         <div style={styles.div_title}>
@@ -115,12 +112,10 @@ class BlogDetail extends React.Component {
             onChange={this.handleTitle}
             tagName="h2"
           />
-
-          <h4 style={styles.subtitle} >
+          <h4 style={styles.subtitle}>
             wrote on {day}.{month}.{year} by {author.email}
           </h4>
         </div>
-
         {this.props.store.auth.detail.ok ? (
         <div>
           <TextField
@@ -134,7 +129,6 @@ class BlogDetail extends React.Component {
               value={this.state.published}
               onChange={this.handlePublished}
             />
-
             <Button
               color="secondary"
               variant="contained"
@@ -152,11 +146,11 @@ class BlogDetail extends React.Component {
           </div>
         </div>
         ) : null}
-
         <div dangerouslySetInnerHTML={this.createMarkup(this.state.content)} />
       </Template>
-    );
+    )
   }
 }
 
-export default withStore(BlogDetail);
+
+export default withStore(BlogDetail)

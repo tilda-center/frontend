@@ -24,8 +24,8 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/" component={Landing.Detail} />
-      <Route exact path="/blogs" component={Blog.list} />
-      <Route exact path="/blogs/:year/:month/:day/:slug" component={Blog.detail} />
+      <Route exact path="/blogs" component={Blog.List} />
+      <Route exact path="/blogs/:year/:month/:day/:slug" component={Blog.Detail} />
       <Route exact path="/confirm/:token" component={Auth.Confirm} />
       <Route exact path="/dashboard" component={Dashboard.Detail} />
       <Route exact path="/login" component={Auth.TildaLogin} />
