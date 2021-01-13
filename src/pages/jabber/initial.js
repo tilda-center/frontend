@@ -1,8 +1,6 @@
 const initial = {
   detail: {
-    fromAddress: '',
-    subject: '',
-    message: '',
+    client: null,
   },
 }
 

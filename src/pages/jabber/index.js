@@ -1,13 +1,11 @@
-import Detail from './detail'
 import initial from './initial'
 import store from './store'
 
 
-const landing = {
-  Detail,
+const jabber = {
   initial,
   store,
 }
 
 
-export default landing
+export default jabber

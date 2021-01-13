@@ -25,8 +25,8 @@ class Mail extends React.Component {
   state = {
     compose: false,
     ws: XMPP.createClient({
-      jid: 'jid',
-      password: 'password',
+      jid: 'meka@tilda.center',
+      password: 'jedigovnapusikurac',
       transports: {
         websocket: 'wss://jabber.tilda.center:5443/ws',
       },
@@ -39,16 +39,6 @@ class Mail extends React.Component {
     this.init()
   }
 
-  onMessage = (message) => {
-    console.log('callback', message)
-    return true
-  }
-
-  onPresence = (presence) => {
-    console.log('presence', presence)
-    return true
-  }
-
   init = async () => {
     const { mail, notification } = this.props.store
     const response = await mail.select('INBOX')
@@ -56,24 +46,6 @@ class Mail extends React.Component {
       const error = errors(response)
       notification.show(`Error fetching INBOX messages: ${error.message}`)
     }
-    this.state.ws.on('session:started', () => {
-      this.state.ws.getRoster()
-      this.state.ws.sendPresence()
-      this.state.ws.discoverICEServers()
-    })
-    this.state.ws.on('chat', (msg) => {
-      console.log(msg)
-    })
-    console.log('connecting')
-    this.state.ws.connect()
-  }
-
-  openCompose = () => {
-    this.setState({ compose: true })
-  }
-
-  closeCompose = () => {
-    this.setState({ compose: false })
   }
 
   render() {
