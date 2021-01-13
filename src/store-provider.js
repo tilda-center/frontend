@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 // Pages
 import {
-  Auth,
+  EmptyTemplate,
   Profile,
   Resolution,
   Role,
@@ -10,12 +10,11 @@ import {
   User,
 } from 'freenit'
 import {
+  Auth,
+  Jabber,
   Mail,
 } from 'pages'
 import { withRouter } from 'react-router-dom'
-
-// Templates
-import { EmptyTemplate } from 'freenit'
 
 import Blog from 'pages/blog'
 
@@ -27,6 +26,7 @@ const StoreProvider = (props) => {
   const store = {
     auth: new Auth.store(useState(Auth.initial.detail)),
     history: props.history,
+    jabber: new Jabber.store(useState(Jabber.initial.detail)),
     mail: new Mail.store(
       useState(Mail.initial.folders),
       useState(Mail.initial.selected),

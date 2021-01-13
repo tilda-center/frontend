@@ -10,9 +10,8 @@ import {
   Menu,
   Refresh,
 } from '@material-ui/icons'
-import { withStore } from 'freenit'
-import { Strophe } from 'strophe.js'
-import { errors } from 'utils'
+import { withStore, errors } from 'freenit'
+import * as XMPP from 'stanza'
 import Template from 'templates/default/detail'
 import {
   MailCompose,
@@ -25,7 +24,14 @@ import {
 class Mail extends React.Component {
   state = {
     compose: false,
-    ws: new Strophe.Connection('wss://jabber.tilda.center:5443/ws'),
+    ws: XMPP.createClient({
+      jid: 'meka@tilda.center',
+      password: 'jedigovnapusikurac',
+      transports: {
+        websocket: 'wss://jabber.tilda.center:5443/ws',
+      },
+      sasl: false,
+    }),
   }
 
   constructor(props) {
@@ -40,15 +46,6 @@ class Mail extends React.Component {
       const error = errors(response)
       notification.show(`Error fetching INBOX messages: ${error.message}`)
     }
-    this.state.ws.connect('email', 'pass')
-  }
-
-  openCompose = () => {
-    this.setState({ compose: true })
-  }
-
-  closeCompose = () => {
-    this.setState({ compose: false })
   }
 
   render() {
