@@ -1,6 +1,9 @@
 <script lang="ts">
   import { mdiFacebook, mdiHome, mdiTwitter, mdiYoutube } from '@mdi/js'
 
+  let innerWidth = 1024
+  let year = new Date().getFullYear()
+
   const data = {
     cEHIPBec: "Tilda Center",
     IIEgDXnJ: "Novi Sad Hackerspace",
@@ -25,10 +28,8 @@
     gavIKchN: "We didn't steal the cookies",
     WngTsoVN: "Blue screen of pumpkin",
     CDfYxRvR: "Welcome, guests!",
-    YhZqXKIB: "Tilda Center 2015 - 2023",
+    YhZqXKIB: `Tilda Center 2015 - ${year}`,
   }
-
-  let innerWidth = 1024
 </script>
 
 <svelte:window bind:innerWidth />

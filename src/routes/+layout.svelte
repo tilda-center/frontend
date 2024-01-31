@@ -13,7 +13,10 @@
 
 <svelte:head>
   <title>Tilda Center</title>
-  <meta name="description" content="Tilda Center, Hackerspace in Novi Sad, Vojvodina, Serbia" />
+  <meta
+    name="description"
+    content="Tilda Center, Hackerspace in Novi Sad, Vojvodina, Serbia"
+  />
 </svelte:head>
 
 <SvelteToast {options} />
