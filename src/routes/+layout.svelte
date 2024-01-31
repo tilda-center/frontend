@@ -12,8 +12,8 @@
 </script>
 
 <svelte:head>
-  <title>Freenit App</title>
-  <meta name="Freenit" content="Freenit for Svelte" />
+  <title>Tilda Center</title>
+  <meta name="Tilda Center" content="Hackerspace in Novi Sad, Vojvodina, Serbia" />
 </svelte:head>
 
 <SvelteToast {options} />

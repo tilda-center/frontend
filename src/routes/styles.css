@@ -11,15 +11,6 @@
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
-}
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
   --bg-color: #ffffff;
   --bg-secondary-color: #f3f3f6;
   --color-primary: #14854f;
@@ -34,4 +25,10 @@ body {
   --font-color: #333333;
   --font-family-sans: sans-serif;
   --font-family-mono: monaco, 'Consolas', 'Lucida Console', monospace;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
