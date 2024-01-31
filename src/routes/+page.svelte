@@ -35,22 +35,22 @@
 
 <div class="ytsBGPWk">
   <div class="koshyskU">
-    <a href="/">
+    <a href="/" aria-label="home">
       <svg class="IxIUfwxB">
         <path d={mdiHome} />
       </svg>
     </a>
-    <a href="https://www.youtube.com/c/TildaCenterNS/playlists" target="_blank">
+    <a href="https://www.youtube.com/c/TildaCenterNS/playlists" target="_blank" aria-label="youtube">
       <svg class="wOrqPJCc">
         <path d={mdiYoutube} />
       </svg>
     </a>
-    <a href="https://www.facebook.com/tilda.center" target="_blank">
+    <a href="https://www.facebook.com/tilda.center" target="_blank" aria-label="facebook">
       <svg class="xiLSvgjz">
         <path d={mdiFacebook} />
       </svg>
     </a>
-    <a href="https://twitter.com/TildaCenter" target="_blank">
+    <a href="https://twitter.com/TildaCenter" target="_blank" aria-label="twitter">
       <svg class="MXYYFhpr">
         <path d={mdiTwitter} />
       </svg>
@@ -111,7 +111,7 @@
   </h2>
   <div class="LVDCaNAW">
     <a class="JwXSsYsM" target="https://www.openstreetmap.org/?mlat=45.24146&amp;mlon=19.83607#map=19/45.24146/19.83607" href="https://www.openstreetmap.org/?mlat=45.24146&amp;mlon=19.83607#map=19/45.24146/19.83607">
-      <img alt="Open Street Map" src="/img/osm.png" />
+      <img alt="Open Street Map" src="/img/osm.webp" />
     </a>
   </div>
   <div class="pbjMLJHQ">
@@ -126,49 +126,49 @@
   </h2>
   <div class="dvdeNTOU">
     <div class="CBrmOwwv">
-      <img alt="humble beginings" src="/img/01.jpg" />
+      <img alt="humble beginings" src="/img/01.webp" />
       <h4 class="xsnDJGwr">
         {data.xsnDJGwr}
       </h4>
     </div>
     <div class="XNffwVRh">
-      <img alt="hacking" src="/img/02.jpg" />
+      <img alt="hacking" src="/img/02.webp" />
       <h4 class="hLiIxvgG">
         {data.hLiIxvgG}
       </h4>
     </div>
     <div class="iuDJymcL">
-      <img alt="it works!" src="/img/03.jpg" />
+      <img alt="it works!" src="/img/03.webp" />
       <h4 class="frZsGAHH">
         {data.frZsGAHH}
       </h4>
     </div>
     <div class="nYEqpfxt">
-      <img alt="design, css and ui" src="/img/04.jpg" />
+      <img alt="design, css and ui" src="/img/04.webp" />
       <h4 class="EfnMAPrl">
         {data.EfnMAPrl}
       </h4>
     </div>
     <div class="znpVvzTJ">
-      <img alt="linux kernel 0.0.1" src="/img/05.jpg" />
+      <img alt="linux kernel 0.0.1" src="/img/05.webp" />
       <h4 class="oboCqLds">
         {data.oboCqLds}
       </h4>
     </div>
     <div class="gyGaXAqv">
-      <img alt="we didn't steal the cookies" src="/img/06.jpg" />
+      <img alt="we didn't steal the cookies" src="/img/06.webp" />
       <h4 class="gavIKchN">
         {data.gavIKchN}
       </h4>
     </div>
     <div class="bOEsVwEk">
-      <img alt="blue screen of pumpkin" src="/img/07.jpg" />
+      <img alt="blue screen of pumpkin" src="/img/07.webp" />
       <h4 class="WngTsoVN">
         {data.WngTsoVN}
       </h4>
     </div>
     <div class="dOMXPIaZ">
-      <img alt="welcome, guests" src="/img/08.jpg" />
+      <img alt="welcome, guests" src="/img/08.webp" />
       <h4>
         {data.CDfYxRvR}
       </h4>
@@ -186,7 +186,7 @@
     flex-direction: column;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(/img/background.jpg);
+    background-image: url(/img/background.webp);
     color: gray;
   }
 
