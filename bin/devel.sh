@@ -3,9 +3,8 @@
 
 BIN_DIR=`dirname $0`
 . "${BIN_DIR}/common.sh"
-export OFFLINE=yes
 setup
 
 echo "Frontend"
 echo "========"
-env HOST=$(hostname) "${PACKAGE_MANAGER}" start
+env BACKEND_URL=${BACKEND_URL} npm run dev -- --host 0.0.0.0
