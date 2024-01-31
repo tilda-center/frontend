@@ -27,7 +27,11 @@
     CDfYxRvR: "Welcome, guests!",
     YhZqXKIB: "Tilda Center 2015 - 2023",
   }
+
+  let innerWidth = 1024
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="ytsBGPWk">
   <div class="koshyskU">
@@ -66,7 +70,7 @@
     {data.WkFqZInm}
   </h2>
   <div class="UCqKHQxz">
-    <div class="WUJmYexb">
+    <div class="WUJmYexb" class:full={innerWidth < 1023}>
       <p class="eOJSvKjA">
         {data.eOJSvKjA}
       </p>
@@ -86,17 +90,19 @@
         {data.YDVZkOmi}
       </p>
     </div>
-    <div class="BhXZoXMc">
-      <p class="eoqSYoEG">
-        {data.eoqSYoEG}
-      </p>
-      <p class="EHQqfkGF">
-        {data.EHQqfkGF}
-      </p>
-      <p class="KBdOzhAl">
-        {data.KBdOzhAl}
-      </p>
-    </div>
+    {#if innerWidth > 1023}
+      <div class="BhXZoXMc">
+        <p class="eoqSYoEG">
+          {data.eoqSYoEG}
+        </p>
+        <p class="EHQqfkGF">
+          {data.EHQqfkGF}
+        </p>
+        <p class="KBdOzhAl">
+          {data.KBdOzhAl}
+        </p>
+      </div>
+    {/if}
   </div>
 </div>
 <div class="ThUnSFsq">
@@ -225,6 +231,7 @@
   .cEHIPBec {
     margin: 0;
     font-size: 8rem;
+    text-align: center;
   }
 
   .sJyXZbEg {
@@ -243,6 +250,10 @@
 
   .WUJmYexb {
     width: 50%;
+  }
+
+  .full {
+    width: 100%;
   }
 
   .BhXZoXMc {
