@@ -36,22 +36,22 @@
 
 <div class="ytsBGPWk">
   <div class="koshyskU">
-    <a href="/" aria-label="home">
+    <a href="/" aria-label="home" class="menu">
       <svg class="IxIUfwxB">
         <path d={mdiHome} />
       </svg>
     </a>
-    <a href="https://www.youtube.com/c/TildaCenterNS/playlists" target="_blank" aria-label="youtube">
+    <a href="https://www.youtube.com/c/TildaCenterNS/playlists" target="_blank" aria-label="youtube" class="menu">
       <svg class="wOrqPJCc">
         <path d={mdiYoutube} />
       </svg>
     </a>
-    <a href="https://www.facebook.com/tilda.center" target="_blank" aria-label="facebook">
+    <a href="https://www.facebook.com/tilda.center" target="_blank" aria-label="facebook" class="menu">
       <svg class="xiLSvgjz">
         <path d={mdiFacebook} />
       </svg>
     </a>
-    <a href="https://twitter.com/TildaCenter" target="_blank" aria-label="twitter">
+    <a href="https://twitter.com/TildaCenter" target="_blank" aria-label="twitter" class="menu">
       <svg class="MXYYFhpr">
         <path d={mdiTwitter} />
       </svg>
@@ -188,7 +188,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url(/img/background.webp);
-    color: gray;
+    color: #bbb;
   }
 
   .koshyskU {
@@ -200,25 +200,25 @@
   .IxIUfwxB {
     width: 30px;
     height: 30px;
-    fill: gray;
+    fill: #bbb;
   }
 
   .wOrqPJCc {
     width: 30px;
     height: 30px;
-    fill: gray;
+    fill: #bbb;
   }
 
   .xiLSvgjz {
     width: 30px;
     height: 30px;
-    fill: gray;
+    fill: #bbb;
   }
 
   .MXYYFhpr {
     width: 30px;
     height: 30px;
-    fill: gray;
+    fill: #bbb;
   }
 
   .uwwZVBWe {
@@ -264,7 +264,8 @@
 
   .ThUnSFsq {
     padding: 20px;
-    background-color: #eee;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
 
   .TgTDsIEJ {
@@ -332,8 +333,11 @@
   .YhZqXKIB {
     padding: 5px;
     text-align: center;
-    color: #77767b;
-    border-top: 1px solid gray;
+    border-top: 1px solid #eee;
     background-color: #f8f8f8;
+  }
+
+  .menu {
+    padding: 10px;
   }
 </style>
