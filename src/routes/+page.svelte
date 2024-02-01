@@ -128,51 +128,51 @@
   <div class="dvdeNTOU">
     <div class="CBrmOwwv">
       <img alt="humble beginings" src="/img/01.webp" />
-      <h4 class="xsnDJGwr">
+      <span class="xsnDJGwr">
         {data.xsnDJGwr}
-      </h4>
+      </span>
     </div>
     <div class="XNffwVRh">
       <img alt="hacking" src="/img/02.webp" />
-      <h4 class="hLiIxvgG">
+      <span class="hLiIxvgG">
         {data.hLiIxvgG}
-      </h4>
+      </span>
     </div>
     <div class="iuDJymcL">
       <img alt="it works!" src="/img/03.webp" />
-      <h4 class="frZsGAHH">
+      <span class="frZsGAHH">
         {data.frZsGAHH}
-      </h4>
+      </span>
     </div>
     <div class="nYEqpfxt">
       <img alt="design, css and ui" src="/img/04.webp" />
-      <h4 class="EfnMAPrl">
+      <span class="EfnMAPrl">
         {data.EfnMAPrl}
-      </h4>
+      </span>
     </div>
     <div class="znpVvzTJ">
       <img alt="linux kernel 0.0.1" src="/img/05.webp" />
-      <h4 class="oboCqLds">
+      <span class="oboCqLds">
         {data.oboCqLds}
-      </h4>
+      </span>
     </div>
     <div class="gyGaXAqv">
       <img alt="we didn't steal the cookies" src="/img/06.webp" />
-      <h4 class="gavIKchN">
+      <span class="gavIKchN">
         {data.gavIKchN}
-      </h4>
+      </span>
     </div>
     <div class="bOEsVwEk">
       <img alt="blue screen of pumpkin" src="/img/07.webp" />
-      <h4 class="WngTsoVN">
+      <span class="WngTsoVN">
         {data.WngTsoVN}
-      </h4>
+      </span>
     </div>
     <div class="dOMXPIaZ">
       <img alt="welcome, guests" src="/img/08.webp" />
-      <h4>
+      <span>
         {data.CDfYxRvR}
-      </h4>
+      </span>
     </div>
   </div>
 </div>
